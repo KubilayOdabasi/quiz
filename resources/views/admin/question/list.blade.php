@@ -25,7 +25,11 @@
                 @foreach($quiz->questions as $question)
                     <tr>
                         <td scope="col">{{ $question->question }}</td>
-                        <td scope="col">{{ $question->image }}</td>
+                        <td scope="col">
+                            @if($question->image)
+                                <a href="{{asset($question->image)}}" class="btn btn-sm btn-light" target="_blank">Görüntüle</a>
+                            @endif
+                        </td>
                         <td scope="col">{{ $question->answer1 }}</td>
                         <td scope="col">{{ $question->answer2 }}</td>
                         <td scope="col">{{ $question->answer3 }}</td>
