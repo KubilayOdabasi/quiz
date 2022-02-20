@@ -22,6 +22,14 @@
                     <input type="datetime-local" name="finished_at" class="form-control" value="@if(old('finished_at')){{ old('finished_at') }}@else@if($quiz->finished_at){{ date('Y-m-d\TH:i', strtotime($quiz->finished_at)) }}@endif@endif">
                 </div>
                 <div class="form-group">
+                    <label>Quiz Durumu</label>
+                    <select name="status" class="form-control">
+                        <option @if($quiz->questions_coun<4) disabled @endif @if($quiz->status==='publish') selected @endif value="publish">Aktif</option>
+                        <option @if($quiz->status==='passive') selected @endif value="passive">Pasif</option>
+                        <option @if($quiz->status==='draft') selected @endif value="draft">Taslak</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <button type="submit" class="btn btn-success btn-sm btn-block">Quiz Güncelle</button>
                 </div>
 
