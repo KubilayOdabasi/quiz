@@ -52,7 +52,7 @@
                             </div>
                         @endif
 
-                        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                        <div class="overflow-hidden sm:rounded-lg">
                             {{ $slot }}
                         </div>
                     </div>
