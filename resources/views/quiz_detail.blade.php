@@ -6,6 +6,14 @@
                 <div class="row">
                     <div class="col-md-4">
                         <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Puan
+                                <span class="badge alert-success badge-pill">{{ $quiz->my_result->point }}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Doğru / Yanlış
+                                <span class="badge alert-warning badge-pill">{{ $quiz->my_result->correct }} / {{ $quiz->my_result->wrong }}</span>
+                            </li>
                             @if($quiz->finished_at)
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 Son Katılım Tarihi
@@ -30,7 +38,9 @@
                         <p class="card-text">
                             {{ $quiz->description }}
                         </p>
+                        @if(!$quiz->my_result)
                         <a href="{{ route('quiz.join', $quiz->slug) }}" class="btn btn-primary btn-sm col-12">Sınava Katıl</a>
+                        @endif
                     </div>
                 </div>
         </div>
