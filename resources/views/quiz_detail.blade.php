@@ -30,7 +30,7 @@
                         <p class="card-text">
                             {{ $quiz->description }}
                         </p>
-                        <a href="#" class="btn btn-primary btn-sm col-12">Sınava Katıl</a>
+                        <a href="{{ route('quiz.join', $quiz->slug) }}" class="btn btn-primary btn-sm col-12">Sınava Katıl</a>
                     </div>
                 </div>
         </div>
