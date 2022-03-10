@@ -40,6 +40,24 @@
                             </li>
                             @endif
                         </ul>
+
+                        @if(count($quiz->top_ten)>0)
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">En iyi 10</h5>
+                                <ul class="list-group">
+                                    @foreach($quiz->top_ten as $topten)
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <strong class="h4">{{ $loop->iteration }}.</strong>
+                                        <img class="w-8 h-8 rounded-full ml-2 mr-2" src="{{ asset($topten->user->profile_photo_url) }}">
+                                        {{ $topten->user->name }}
+                                        <span class="badge alert-success badge-pill">{{ $topten->point }}</span>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                        @endif
                     </div>
                     <div class="col-md-8">
                         <p class="card-text">
