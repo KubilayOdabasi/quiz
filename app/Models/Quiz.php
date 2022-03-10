@@ -16,7 +16,7 @@ class Quiz extends Model
 
     protected $dates = ['finished_at'];
 
-    protected $appends = ['details'];
+    protected $appends = ['details', 'my_rank'];
 
     public function getDetailsAttribute()
     {
@@ -34,6 +34,16 @@ class Quiz extends Model
     public function top_ten()
     {
         return $this->results()->orderBy('point', 'desc')->limit(10);
+    }
+
+    public function getMyRankAttribute()
+    {
+        $rank = 0;
+        foreach ($this->results()->orderBy('point', 'desc')->get() as $item) {
+            $rank++;
+            if(auth()->user()->id == $item->user_id)
+                return $rank;
+        }
     }
 
     public function my_result()

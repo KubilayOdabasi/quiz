@@ -8,8 +8,12 @@
                         <ul class="list-group">
                             @if($quiz->my_result)
                             <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Sıralaman
+                                <span class="badge alert-success badge-pill">{{ $quiz->my_rank }}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
                                 Puan
-                                <span class="badge alert-primary badge-pill">{{ $quiz->my_result->point }}</span>
+                            <span class="badge alert-primary badge-pill">{{ $quiz->my_result->point }}</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 Doğru / Yanlış
@@ -47,9 +51,11 @@
                                 <h5 class="card-title">En iyi 10</h5>
                                 <ul class="list-group">
                                     @foreach($quiz->top_ten as $topten)
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <strong class="h4">{{ $loop->iteration }}.</strong>
-                                        <img class="w-8 h-8 rounded-full ml-2 mr-2" src="{{ asset($topten->user->profile_photo_url) }}">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center @if(auth()->user()->id == $topten->user_id) bg-warning @endif">
+                                        <div class="float-left">
+                                            <img class="w-8 h-8 rounded-full ml-2 mr-2 float-right" src="{{ asset($topten->user->profile_photo_url) }}">
+                                            <strong class="h3 fw-bolder">{{ $loop->iteration }}.</strong>
+                                        </div>
                                         {{ $topten->user->name }}
                                         <span class="badge alert-success badge-pill">{{ $topten->point }}</span>
                                     </li>
