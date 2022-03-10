@@ -16,6 +16,21 @@ class Quiz extends Model
 
     protected $dates = ['finished_at'];
 
+    protected $appends = ['details'];
+
+    public function getDetailsAttribute()
+    {
+        return (object) [
+            'average'       => round($this->results()->avg('point')),
+            'join_count'    => $this->results()->count(),
+        ];
+    }
+
+    public function results()
+    {
+        return $this->hasMany('App\Models\Result');
+    }
+
     public function my_result()
     {
         return $this->hasOne('App\Models\Result')->where('user_id', auth()->user()->id);
