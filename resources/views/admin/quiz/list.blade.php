@@ -21,7 +21,7 @@
                     </div>
                     @if(request()->get('title') || request()->get('status'))
                     <div class="col-md-2">
-                        <a href="{{route('quizzes.index')}}" class="btn btn-secondary">Sıfırle</a>
+                        <a href="{{route('quizzes.index')}}" class="btn btn-secondary">Sıfırla</a>
                     </div>
                     @endif
                 </div>
